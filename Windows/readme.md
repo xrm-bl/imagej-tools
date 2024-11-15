@@ -8,12 +8,12 @@
 ij 画像ファイルパス
 ```
 
-- 画像フォルダ内をimport as image sequence（メモリ使用）
+- 画像フォルダ内の全ての画像をimport as image sequence（メモリ使用）
 ```
 ij 画像フォルダパス
 ```
 
-- 画像フォルダ内をimport as image sequence（メモリを使わずにvirtual stackとして読み込む）
+- 画像フォルダ内の全ての画像をimport as image sequence（メモリを使わずにvirtual stackとして読み込む）
 ```
 ij 画像フォルダパス@v
 ```
