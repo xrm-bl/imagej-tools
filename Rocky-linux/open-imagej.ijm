@@ -1,8 +1,14 @@
 // Get the input path from the command-line argument
 args = getArgument();
 
+if (indexOf(args, "@") != -1) {
+    argsArray = split(args, "@");
+} else {indexOf(args, ":") != -1
+    argsArray = split(args, ":");
+}
+
 //print(args)
-argsArray = split(args, "@");
+
 input = File.getAbsolutePath(argsArray[0]); // First argument: input path
 
 // Initialize start and end to defaults
