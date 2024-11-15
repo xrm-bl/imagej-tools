@@ -25,7 +25,7 @@ ij 画像フォルダパス@start@End
 
 - 画像フォルダ内のstart枚目からend枚目をimport as image sequence（メモリを使わずにvirtual stackとして読み込む）
 ```
-ij 画像フォルダパス@start@End@v
+ij 画像フォルダパス@start@end@v
 ```
 パスは相対パスと絶対パス両方使える（はず）．   
 オプションを半角アットマークで区切って入力する要領．     
