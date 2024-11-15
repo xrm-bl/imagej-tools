@@ -1,0 +1,3 @@
+- ij.batとopen-imagej.ijmをImageJの実行ファイル（ImageJ.exe）があるフォルダにコピーする．
+- ImageJの実行ファイル（ImageJ.exe）があるフォルダへのPATHを通す．
+- `ij （画像ファイルまたはフォルダ）`
