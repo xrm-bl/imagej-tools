@@ -1,17 +1,72 @@
 // Get the input path from the command-line argument
-input = getArgument();
+args = getArgument();
+//print(args)
+argsArray = split(args, "@");
+input = File.getAbsolutePath(argsArray[0]); // First argument: input path
 
-// Convert input to an absolute path
-input = File.getAbsolutePath(input);
+// Initialize start and end to defaults
+start = 0;
+end = 0;
+
+// virtual stack option default
+virtualstack = "no";
+
+// If start and end numbers and virtual stack option are provided, parse them
+if (lengthOf(argsArray) == 2)  {
+    virtualstack = "yes";
+}
+if (lengthOf(argsArray) == 3)  {
+    start = parseInt(argsArray[1]);
+    end = parseInt(argsArray[2]);
+}
+if (lengthOf(argsArray) == 4)  {
+    start = parseInt(argsArray[1]);
+    end = parseInt(argsArray[2]);
+    virtualstack = "yes";
+}
 
 // Check if the input path exists
 if (File.exists(input)) {
-    // Check if the input is a directory
     if (File.isDirectory(input)) {
-        // Load the directory as an image sequence
-        run("Image Sequence...", "open=[" + input + "] sort");
+        // If input is a directory, get the list of files
+        fileList = getFileList(input);
+        
+        // Sort the fileList lexicographically
+        Array.sort(fileList);
+        
+        if (lengthOf(fileList) == 1) {
+            // If there is only one file, open it
+            singleFile = input + File.separator + fileList[0];
+            open(singleFile);
+        } else if (lengthOf(fileList) > 1) {
+           
+            // If there are multiple files, load as sequence
+            if (start > 0 && end > 0) {
+                // Load a specific range
+                numberofinput = end - start + 1;
+                if (virtualstack == "no") {
+                    run("Image Sequence...", "open=[" + input + "] number=" + numberofinput + " starting=" + start + " increment=1" + " sort");
+                } else {
+                run("Image Sequence...", "open=[" + input + "] number=" + numberofinput + " starting=" + start + " increment=1" + " sort use");
+                    }
+                
+            } else {
+                // Load the entire sequence
+                if (virtualstack == "no") {
+                    run("Image Sequence...", "open=[" + input + "] sort");
+                } else {
+                run("Image Sequence...", "open=[" + input + "] sort use");    
+                }
+            }
+
+        } else {
+            // Directory is empty
+            print("Error: The directory is empty.");
+            exit();
+        }
+        
     } else {
-        // If the input is a file, open the single image
+        // If input is a single file, open it
         open(input);
     }
 } else {
@@ -19,7 +74,3 @@ if (File.exists(input)) {
     print("Error: The specified path does not exist.");
     exit();
 }
-
-// Optional: Save the stack (or single image) as a TIFF file
-//output = input + "_output.tif";
-//run("Save", "save=[" + output + "]");
