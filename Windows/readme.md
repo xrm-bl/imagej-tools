@@ -1,6 +1,6 @@
 ### インストール方法
 - ij.batとopen-imagej.ijmをImageJの実行ファイル（ImageJ.exe）があるフォルダにコピーする．
-- ImageJの実行ファイル（ImageJ.exe）があるフォルダへのPATHを通す．
+- ImageJの実行ファイル（ImageJ.exe）があるフォルダへのPATHを通す．(https://atmarkit.itmedia.co.jp/ait/articles/1805/11/news035.html)
 
 ### 使い方
 - 画像一枚を表示
