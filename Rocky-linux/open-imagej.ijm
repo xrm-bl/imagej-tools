@@ -3,7 +3,7 @@ args = getArgument();
 
 if (indexOf(args, "@") != -1) {
     argsArray = split(args, "@");
-} else if (indexOf(args, ":") != -1) {
+} else {
     argsArray = split(args, ":");
 }
 
