@@ -1,0 +1,2 @@
+#!/bin/sh
+java -jar [dir-to-imagej]/ij.jar -macro [dir-to-imagej]/open-imagej.ijm "$1" &
