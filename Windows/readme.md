@@ -20,7 +20,7 @@ ij 画像フォルダパス@v
 
 - 画像フォルダ内のstart枚目からend枚目をimport as image sequence（メモリ使用）
 ```
-ij 画像フォルダパス@start@End
+ij 画像フォルダパス@start@end
 ```
 
 - 画像フォルダ内のstart枚目からend枚目をimport as image sequence（メモリを使わずにvirtual stackとして読み込む）
