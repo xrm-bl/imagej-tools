@@ -30,3 +30,12 @@ ij 画像フォルダパス start end v
 パスは相対パスと絶対パス両方使える（はず）．   
 ~~オプションを半角アットマークで区切って入力する要領．~~  
 ~~ImageJマクロの仕様上の都合でアットマークを使っている．（本当はカンマやスペースを使いたい...）~~ スペースかカンマで区切るように仕様変更．
+
+### USAGE
+```
+ij [file_path] : open a single image
+ij [dir_path] : open an image directory as a sequence
+ij [dir_path] v : open an image directory as a virtual stack sequence
+ij [dir_path] [i] [j] : open ith - jth images in a directory as a sequence
+ij [dir_path] [i] [j] v : open ith - jth images in a directory as a virtual stack sequence
+```
