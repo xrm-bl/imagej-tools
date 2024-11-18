@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# Resolve the absolute path of the argument
+INPUT_PATH="$1"
+ABSDIR=""
+
 # Check if the first argument is empty
 if [ -z "$1" ]; then
     echo "Empty file/directory path!"
@@ -17,6 +21,17 @@ if [ ! -z "$5" ]; then
     echo "Too many arguments! Type 'ij' to show usage."
     exit 1
 fi
+
+# Check if the argument exists as a file
+if [ -f "$INPUT_PATH" ]; then
+    ABSDIR=$(realpath "$INPUT_PATH")
+fi
+
+# Check if the argument exists as a directory
+if [ -d "$INPUT_PATH" ]; then
+    ABSDIR=$(realpath "$INPUT_PATH")
+fi
+
 
 # Construct the command based on the input arguments
 if [ -z "$2" ]; then
