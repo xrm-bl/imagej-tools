@@ -59,4 +59,4 @@ else
     exit 1
 fi
 
-java -jar [dir-to-imagej]/ij.jar -macro [dir-to-imagej]/open-imagej.ijm "$command" &
+java -Xmx229376m -jar [dir-to-imagej]/ij.jar -macro [dir-to-imagej]/open-imagej.ijm "$command" &
