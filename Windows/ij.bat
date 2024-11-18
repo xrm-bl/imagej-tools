@@ -1,7 +1,7 @@
 @echo off
 REM Check if %1 is empty
 if "%~1"=="" (
-    echo Empty file/directory path! \n
+    echo Empty file/directory path!
     echo USAGE 
     echo ij [file_path] : open a single image
     echo ij [dir_path] : open an image directory as a sequence
