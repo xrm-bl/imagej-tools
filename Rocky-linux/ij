@@ -1,2 +1,47 @@
-#!/bin/sh
-java -jar [dir-to-imagej]/ij.jar -macro [dir-to-imagej]/open-imagej.ijm "$1" &
+#!/bin/bash
+
+# Check if the first argument is empty
+if [ -z "$1" ]; then
+    echo "Empty file/directory path!"
+    echo "USAGE"
+    echo "ij [file_path] : open a single image"
+    echo "ij [dir_path] : open an image directory as a sequence"
+    echo "ij [dir_path] v : open an image directory as a virtual stack sequence"
+    echo "ij [dir_path] [i] [j] : open ith - jth images in a directory as a sequence"
+    echo "ij [dir_path] [i] [j] v : open ith - jth images in a directory as a virtual stack sequence"
+    exit 1
+fi
+
+# Check if there are more than 4 arguments
+if [ ! -z "$5" ]; then
+    echo "Too many arguments! Type 'ij' to show usage."
+    exit 1
+fi
+
+# Construct the command based on the input arguments
+if [ -z "$2" ]; then
+    command="$1"
+
+elif [ "$2" == "v" ]; then
+    command="$1@$2"
+
+elif [ -z "$3" ]; then
+    echo "Error! Type 'ij' to show usage."
+    exit 1
+
+elif [ "$3" == "v" ]; then
+    echo "Error! Type 'ij' to show usage."
+    exit 1
+
+elif [ "$4" == "v" ]; then
+    command="$1@$2@$3@$4"
+
+elif [ -z "$4" ]; then
+    command="$1@$2@$3"
+
+else
+    echo "Error! Type 'ij' to show usage."
+    exit 1
+fi
+
+java -jar [dir-to-imagej]/ij.jar -macro [dir-to-imagej]/open-imagej.ijm "$command" &
