@@ -33,12 +33,13 @@ if [ -d "$INPUT_PATH" ]; then
 fi
 
 
+
 # Construct the command based on the input arguments
 if [ -z "$2" ]; then
-    command="$1"
+    command="$ABSDIR"
 
 elif [ "$2" == "v" ]; then
-    command="$1@$2"
+    command="$ABSDIR@$2"
 
 elif [ -z "$3" ]; then
     echo "Error! Type 'ij' to show usage."
@@ -49,10 +50,10 @@ elif [ "$3" == "v" ]; then
     exit 1
 
 elif [ "$4" == "v" ]; then
-    command="$1@$2@$3@$4"
+    command="$ABSDIR@$2@$3@$4"
 
 elif [ -z "$4" ]; then
-    command="$1@$2@$3"
+    command="$ABSDIR@$2@$3"
 
 else
     echo "Error! Type 'ij' to show usage."
