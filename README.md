@@ -6,4 +6,5 @@ ImageJ(fiji)をCUIから実行するツール
 - `ij [dir_path]` open an image directory as a sequence
 - `ij [dir_path] v` open an image directory as a virtual stack sequence
 - `ij [dir_path] [i] [j]` open <i>i</i> th - <i>j</i> th images in a directory as a sequence
-- `ij [dir_path] [i] [j]` open <i>i</i> th - <i>j</i> th images in a directory as a virtual stack sequence
+- `ij [dir_path] [i] [j] v` open <i>i</i> th - <i>j</i> th images in a directory as a virtual stack sequence
+- Both absolute path and relative path are valid.
