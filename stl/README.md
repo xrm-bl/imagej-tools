@@ -8,3 +8,6 @@
 - Background subtracting, Thresholding, Binalization, and Surface generation will proceed automatically.
 - Surface model will be displayed in 3D viewer.
 - To save stl file, 3D viewer > File > Export surfaces > stl (binary)
+
+## Reference
+https://www.youtube.com/watch?v=xDWVlD-XLhg
