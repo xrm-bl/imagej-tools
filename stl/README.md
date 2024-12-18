@@ -1,5 +1,5 @@
 ## Install
-- Download [stl.ijm](https://github.com/xrm-bl/imagej-tools/blob/main/stl/stl.ijm) to your PC
+- Download [stl.ijm](https://github.com/xrm-bl/imagej-tools/blob/main/stl/stl.ijm) to somewhere in your PC
 
 ## How to use
 - Open images (stack or 3D tiff)
