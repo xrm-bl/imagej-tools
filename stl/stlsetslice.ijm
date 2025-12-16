@@ -15,20 +15,38 @@ run("Subtract Background...", "rolling=50 stack"); // Adjust rolling ball size i
 //sliceNum = round(Dialog.getNumber());
 //setSlice(sliceNum);
 
-// ---- Slice selection + preview + OK/Cancel ----
+// ---- Slice selection + preview + confirm loop ----
 defaultSlice = round(nSlices/2);
-Dialog.create("Select Slice (Preview)");
-Dialog.addSlider("Slice", 1, nSlices, defaultSlice);
-Dialog.show();
-// ※Cancelされた場合、環境によってはここでマクロが停止します
-if (Dialog.wasCanceled()) exit("Canceled by user.");
-sliceNum = round(Dialog.getNumber());
-setSlice(sliceNum);  // 選んだスライスを表示（プレビュー）
-// プレビューを見て続行するか確認（OK/Cancel）
-if (!getBoolean("Showing slice " + sliceNum + ".\nContinue processing?")) {
-    exit("Canceled by user.");
+sliceNum = defaultSlice;
+
+while (true) {
+    // 1) スライス選択（スライダー）
+    Dialog.create("Select Slice (Preview)");
+    Dialog.addSlider("Slice", 1, nSlices, sliceNum);
+    Dialog.show();
+    if (Dialog.wasCanceled()) exit("Canceled by user.");
+
+    sliceNum = round(Dialog.getNumber());
+
+    // 2) プレビュー表示
+    setSlice(sliceNum);
+
+    // 3) 続行するか（戻る/中止を含めて）確認
+    Dialog.create("Confirm");
+    Dialog.addMessage("Showing slice " + sliceNum + ".\nWhat would you like to do?");
+    Dialog.addChoice("Action", newArray("Continue", "Reselect slice", "Cancel"), "Continue");
+    Dialog.show();
+    if (Dialog.wasCanceled()) exit("Canceled by user.");
+
+    action = Dialog.getChoice();
+    if (action == "Continue") {
+        break; // ループを抜けて後続処理へ
+    } else if (action == "Cancel") {
+        exit("Canceled by user.");
+    }
+    // action == "Reselect slice" の場合は while(true) で先頭に戻る
 }
-// ----------------------------------------------
+// -----------------------------------------------
 
 setAutoThreshold("Default dark no-reset");
 setOption("BlackBackground", true);
