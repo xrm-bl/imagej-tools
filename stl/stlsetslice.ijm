@@ -6,15 +6,6 @@
 
 run("Subtract Background...", "rolling=50 stack"); // Adjust rolling ball size if needed
 
-//setSlice(round(nSlices/2));
-
-//defaultSlice = round(nSlices/2);
-//Dialog.create("Select Slice");
-//Dialog.addSlider("Slice", 1, nSlices, defaultSlice);
-//Dialog.show();
-//sliceNum = round(Dialog.getNumber());
-//setSlice(sliceNum);
-
 // ---- Slice selection + preview + confirm loop ----
 defaultSlice = round(nSlices/2);
 sliceNum = defaultSlice;
@@ -24,8 +15,7 @@ while (true) {
     Dialog.create("Select Slice (Preview)");
     Dialog.addSlider("Slice", 1, nSlices, sliceNum);
     Dialog.show();
-    if (Dialog.wasCanceled()) exit("Canceled by user.");
-
+    
     sliceNum = round(Dialog.getNumber());
 
     // 2) プレビュー表示
@@ -34,15 +24,12 @@ while (true) {
     // 3) 続行するか（戻る/中止を含めて）確認
     Dialog.create("Confirm");
     Dialog.addMessage("Showing slice " + sliceNum + ".\nWhat would you like to do?");
-    Dialog.addChoice("Action", newArray("Continue", "Reselect slice", "Cancel"), "Continue");
+    Dialog.addChoice("Action", newArray("Continue", "Reselect slice"), "Continue");
     Dialog.show();
-    if (Dialog.wasCanceled()) exit("Canceled by user.");
-
+    
     action = Dialog.getChoice();
     if (action == "Continue") {
         break; // ループを抜けて後続処理へ
-    } else if (action == "Cancel") {
-        exit("Canceled by user.");
     }
     // action == "Reselect slice" の場合は while(true) で先頭に戻る
 }
