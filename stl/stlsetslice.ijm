@@ -8,14 +8,27 @@ run("Subtract Background...", "rolling=50 stack"); // Adjust rolling ball size i
 
 //setSlice(round(nSlices/2));
 
-defaultSlice = round(nSlices/2);
+//defaultSlice = round(nSlices/2);
+//Dialog.create("Select Slice");
+//Dialog.addSlider("Slice", 1, nSlices, defaultSlice);
+//Dialog.show();
+//sliceNum = round(Dialog.getNumber());
+//setSlice(sliceNum);
 
-Dialog.create("Select Slice");
+// ---- Slice selection + preview + OK/Cancel ----
+defaultSlice = round(nSlices/2);
+Dialog.create("Select Slice (Preview)");
 Dialog.addSlider("Slice", 1, nSlices, defaultSlice);
 Dialog.show();
-
+// ※Cancelされた場合、環境によってはここでマクロが停止します
+if (Dialog.wasCanceled()) exit("Canceled by user.");
 sliceNum = round(Dialog.getNumber());
-setSlice(sliceNum);
+setSlice(sliceNum);  // 選んだスライスを表示（プレビュー）
+// プレビューを見て続行するか確認（OK/Cancel）
+if (!getBoolean("Showing slice " + sliceNum + ".\nContinue processing?")) {
+    exit("Canceled by user.");
+}
+// ----------------------------------------------
 
 setAutoThreshold("Default dark no-reset");
 setOption("BlackBackground", true);
